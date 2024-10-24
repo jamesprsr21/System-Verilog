@@ -1,0 +1,7 @@
+//if the variable of a single Dimensional array is a
+int a[];
+foreach(a[i])  //i is the iterator
+
+or 
+
+for(int i;i<$size(a);i++)   //we can use $size(a) or a.size 
