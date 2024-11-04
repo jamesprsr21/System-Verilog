@@ -1,1 +1,1 @@
-# System-Verilog
+# SystemVerilog
