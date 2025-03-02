@@ -77,6 +77,24 @@ B  at time:0
 C  at time:1
 A  at time:1
 */
+module tb;
+  initial
+    begin
+      fork  
+    
+            $display("A  at time:%0t",$time);  
+     
+           #1 $display("B  at time:%0t",$time); 
+      join_none
+           #1 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+C  at time:1
+B  at time:1
+*/
 
 module tb;
   initial
