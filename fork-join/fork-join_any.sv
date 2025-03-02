@@ -142,7 +142,7 @@ module tb;
     
         #0 $display("A  at time:%0t",$time);  
      
-        #0 $display("B  at time:%0t",$time); 
+        #0 $display("B  at time:%0t",$time);   //remember No delay come before the #0 delay
       join_any
         #0 $display("C  at time:%0t",$time);
     end
@@ -161,7 +161,7 @@ module tb;
     
          $display("A  at time:%0t",$time);  
      
-         $display("B  at time:%0t",$time); 
+        $display("B  at time:%0t",$time); //No-delay comes before #0 delay. Means when B & C running parallelly after A completed then, B completes first before #0 delay(in inactive region)
       join_any
         #0 $display("C  at time:%0t",$time);
     end
