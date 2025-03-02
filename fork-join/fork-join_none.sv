@@ -208,3 +208,22 @@ A  at time:1
 B  at time:2
 C  at time:3
 */
+
+module tb;
+  initial
+    begin
+      fork  
+    
+           #3 $display("A  at time:%0t",$time);  
+     
+           #2 $display("B  at time:%0t",$time); 
+      join_none
+           #1 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:1
+B  at time:2
+A  at time:3
+*/
