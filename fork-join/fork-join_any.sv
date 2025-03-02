@@ -19,3 +19,173 @@ A
 C
 B
 */
+
+module tb;
+  initial
+    begin
+      fork  
+    
+        #1 $display("A  at time:%0t",$time);  
+     
+        #2 $display("B  at time:%0t",$time); 
+      join_any
+      $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:1
+C  at time:1
+B  at time:2
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+        #1 $display("A  at time:%0t",$time);  
+     
+        #2 $display("B  at time:%0t",$time); 
+      join_any
+      #1 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:1
+B  at time:2
+C  at time:2
+*/
+module tb;
+  initial
+    begin
+      fork  
+        #1 $display("A  at time:%0t",$time);  
+     
+        #2 $display("B  at time:%0t",$time); 
+      join_any
+      #2 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:1
+B  at time:2
+C  at time:3
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+        #1 $display("A  at time:%0t",$time);  
+     
+        #2 $display("B  at time:%0t",$time); 
+      join_any
+      #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:1
+C  at time:1
+B  at time:2
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+        #0 $display("A  at time:%0t",$time);  
+     
+        #2 $display("B  at time:%0t",$time); 
+      join_any
+       $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+
+/*
+A  at time:0
+C  at time:0
+B  at time:2
+*/
+module tb;
+  initial
+    begin
+      fork  
+    
+        #0 $display("A  at time:%0t",$time);  
+     
+        #0 $display("B  at time:%0t",$time); 
+      join_any
+        $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+C  at time:0
+B  at time:0
+*/
+
+//If you want to make fork-join_any to work as fork-join then you can use #0 in every threads(incase of some exceptional case when there is no delay.
+module tb;
+  initial
+    begin
+      fork  
+    
+        #0 $display("A  at time:%0t",$time);  
+     
+        #0 $display("B  at time:%0t",$time); 
+      join_any
+        #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+B  at time:0
+C  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+         $display("A  at time:%0t",$time);  
+     
+         $display("B  at time:%0t",$time); 
+      join_any
+        #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+B  at time:0
+C  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+        #0 $display("A  at time:%0t",$time);  
+     
+         $display("B  at time:%0t",$time); 
+      join_any
+        #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+B  at time:0
+A  at time:0
+C  at time:0
+*/
