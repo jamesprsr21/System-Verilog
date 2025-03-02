@@ -227,3 +227,197 @@ C  at time:1
 B  at time:2
 A  at time:3
 */
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+NOTE: Experiment with #0 delay.
+remember: First comes No Delay, then #0 delay then #n delay(n is any number)
+i.e. 
+No delay -> #0 delay -> #n delay
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+module tb;
+  initial
+    begin
+      fork  
+    
+           #0 $display("A  at time:%0t",$time);  
+     
+           #0 $display("B  at time:%0t",$time); 
+      join_none
+           #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:0
+A  at time:0
+B  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+           #0 $display("A  at time:%0t",$time);  
+     
+           #0 $display("B  at time:%0t",$time); 
+      join_none
+      $display("C  at time:%0t",$time);  //No delay comes before the #0 delay
+    end
+  
+endmodule
+/*
+C  at time:0
+A  at time:0
+B  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+           #0 $display("A  at time:%0t",$time);  
+     
+            $display("B  at time:%0t",$time); 
+      join_none
+            $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:0
+B  at time:0
+A  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+            $display("A  at time:%0t",$time);  
+     
+            #0 $display("B  at time:%0t",$time); 
+      join_none
+            $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:0
+A  at time:0
+B  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+            $display("A  at time:%0t",$time);  //No delay comes before the #0 delay
+     
+            $display("B  at time:%0t",$time); 
+      join_none
+            #0 $display("C  at time:%0t",$time);  //#0 comes later after no delay threads
+    end
+  
+endmodule
+/*
+A  at time:0
+B  at time:0
+C  at time:0
+*/
+module tb;
+  initial
+    begin
+      fork  
+    
+            #0 $display("A  at time:%0t",$time);  
+     
+            $display("B  at time:%0t",$time);   //No delay comes before the #0 delay
+      join_none
+            #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+B  at time:0
+C  at time:0
+A  at time:0
+*/
+module tb;
+  initial
+    begin
+      fork  
+    
+             $display("A  at time:%0t",$time);   //No delay comes before the #0 delay
+     
+            #0 $display("B  at time:%0t",$time); 
+      join_none
+            #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+C  at time:0
+B  at time:0
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+            #1 $display("A  at time:%0t",$time);  
+     
+            #0 $display("B  at time:%0t",$time); 
+      join_none
+            #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:0
+B  at time:0
+A  at time:1
+*/
+module tb;
+  initial
+    begin
+      fork  
+    
+            #0 $display("A  at time:%0t",$time);  
+     
+            #1 $display("B  at time:%0t",$time); 
+      join_none
+            #0 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+C  at time:0
+A  at time:0
+B  at time:1
+*/
+
+module tb;
+  initial
+    begin
+      fork  
+    
+            #0 $display("A  at time:%0t",$time);  
+     
+            #0 $display("B  at time:%0t",$time); 
+      join_none
+            #1 $display("C  at time:%0t",$time);
+    end
+  
+endmodule
+/*
+A  at time:0
+B  at time:0
+C  at time:1
+*/
