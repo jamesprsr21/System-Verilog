@@ -53,7 +53,11 @@ initial
           //for that, We can call the protected method in the public method present there, and then we can access the protected method
           ch.calc(); //indirectly accessing protcted method(display) and protected variable using the public method(calc) present in the child class itself
   end 
-endmodule 
+endmodule
+
+
+Q. How can you access local and protected varibales and methods outside of it's scope?
+Ans: With the help of public method we can access.
 
 
   
