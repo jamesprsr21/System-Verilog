@@ -10,10 +10,15 @@ class parent;
   protected logic [1:0]b; //2bit variables, support only 0-3
 
   protected function void display();
-    $display("Protected method: a=%0d,b=%0d",a,b);
+          $display("This is Protected method: a=%0d,b=%0d",a,b);
+  endfunction
+
+  local function void monitor();
+      $display("This is Local method: a=%0d,b=%0d",a,b);
   endfunction
   
   function void update(logic [1:0]a,b); //public by default
+  monitor();
   this.a=a; //assigning argument inputs to the local and protected variables
   this.b=b;  //assigning to protecetd variable
   endfunction
